@@ -1,0 +1,47 @@
+# Stateless application specification
+# The Deployment creates a single replicated Pod, indicated by the 'replicas' field
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: py-app-instance
+    migrate-for-anthos-optimization: "true"
+    migrate-for-anthos-version: v1.7.0
+  name: py-app-instance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-app-instance
+      migrate-for-anthos-optimization: "true"
+      migrate-for-anthos-version: v1.7.0
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: py-app-instance
+        migrate-for-anthos-optimization: "true"
+        migrate-for-anthos-version: v1.7.0
+    spec:
+      containers:
+      - image: gcr.io/ishmeetm/py-app-instance:4-13-2021--16-19-47
+        name: py-app-instance
+        readinessProbe:
+          exec:
+            command:
+            - /code/ready.sh
+        resources: {}
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /sys/fs/cgroup
+          name: cgroups
+      volumes:
+      - hostPath:
+          path: /sys/fs/cgroup
+          type: Directory
+        name: cgroups
+status: {}
+
