@@ -28,9 +28,11 @@ spec:
       containers:
       - name: py-app-instance
         image: gcr.io/ishmeetm/py-app-instance:4-13-2021--16-19-47
+        ports:
+        - containerPort: 8080
         imagePullPolicy: Always
       imagePullSecrets:
-      - name: varsecretname
+       - name: varsecretname
         readinessProbe:
           exec:
             command:
