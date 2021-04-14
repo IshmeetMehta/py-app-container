@@ -101,7 +101,6 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
   id: "Deploy to Anthos AKS cluster"
-  waitFor: ['Delete from AKS cluster']
   args:
   - '-c'
   - |
