@@ -28,6 +28,9 @@ spec:
       containers:
       - image: gcr.io/ishmeetm/py-app-instance:4-13-2021--16-19-47
         name: py-app-instance
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: varsecretname
         readinessProbe:
           exec:
             command:
