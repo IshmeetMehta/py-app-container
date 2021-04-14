@@ -26,8 +26,8 @@ spec:
         migrate-for-anthos-version: v1.7.0
     spec:
       containers:
-      - name: py-app-instance
-        image: gcr.io/ishmeetm/py-app-instance:4-13-2021--16-19-47
+      - image: gcr.io/ishmeetm/py-app-instance:4-13-2021--16-19-47
+        name: py-app-instance
         imagePullPolicy: Always
       imagePullSecrets:
       - name: varsecretname
