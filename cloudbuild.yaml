@@ -1,21 +1,21 @@
-# # Copyright 2018 Google LLC
-# #
-# # Licensed under the Apache License, Version 2.0 (the "License");
-# # you may not use this file except in compliance with the License.
-# # You may obtain a copy of the License at
-# #
-# #     https://www.apache.org/licenses/LICENSE-2.0
-# #
-# # Unless required by applicable law or agreed to in writing, software
-# # distributed under the License is distributed on an "AS IS" BASIS,
-# # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# # See the License for the specific language governing permissions and
-# # limitations under the License.
+# Copyright 2018 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-# # [START cloudbuild]
-# # Access the id_github file from Secret Manager, and setup SSH
-# steps:
-# # This step runs the unit tests on the app
+# [START cloudbuild]
+# Access the id_github file from Secret Manager, and setup SSH
+steps:
+# This step runs the unit tests on the app
 # - name: 'python:3.7-slim'
 #   id: 'Run Tests'
 #   entrypoint: /bin/sh
@@ -74,7 +74,6 @@
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
   id: "Delete from AKS cluster"
-  waitFor: ['Push to GCR Container Registry']
   args:
   - '-c'
   - |
@@ -82,6 +81,7 @@
     export KUBECONFIG="$(pwd)/gateway-aks-delete-kubeconfig" && \
     gcloud beta container hub memberships get-credentials aks-cluster && \
     kubectl --kubeconfig=gateway-aks-delete-kubeconfig delete -k k8s/overlays/production
+  # [END cloudbuild]
 
 # This step deletes the existing deployment of Anthos GKE cluster
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -94,6 +94,8 @@
     export KUBECONFIG="$(pwd)/gateway-gke-delete-kubeconfig" && \
     gcloud beta container hub memberships get-credentials gke-cluster && \
     kubectl --kubeconfig=gateway-gke-delete-kubeconfig delete -k k8s/overlays/production
+  # [END cloudbuild]
+
 
 # This step deploys the image to AKS cluster
 - name: 'gcr.io/cloud-builders/gcloud'
