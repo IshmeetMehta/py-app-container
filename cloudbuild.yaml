@@ -81,7 +81,7 @@ steps:
 #     export KUBECONFIG="$(pwd)/gateway-aks-delete-kubeconfig" && \
 #     gcloud beta container hub memberships get-credentials aks-cluster && \
 #     kubectl --kubeconfig=gateway-aks-delete-kubeconfig delete -k k8s/overlays/production
-#   # [END cloudbuild]
+#   
 
 # This step deletes the existing deployment of Anthos GKE cluster
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -94,7 +94,6 @@ steps:
     export KUBECONFIG="$(pwd)/gateway-gke-delete-kubeconfig" && \
     gcloud beta container hub memberships get-credentials gke-cluster && \
     kubectl --kubeconfig=gateway-gke-delete-kubeconfig delete -k k8s/overlays/production
-  # [END cloudbuild]
 
 
 # This step deploys the image to AKS cluster
