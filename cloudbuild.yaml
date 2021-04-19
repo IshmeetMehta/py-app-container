@@ -71,17 +71,17 @@ steps:
 #   - 'gcr.io/$PROJECT_ID/gcpdemopython:prod'
 
 # This step deletes the existing deployment of Anthos AKS cluster
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: /bin/sh
-  id: "Delete from AKS cluster"
-  args:
-  - '-c'
-  - |
-    set -x && \
-    export KUBECONFIG="$(pwd)/gateway-aks-delete-kubeconfig" && \
-    gcloud beta container hub memberships get-credentials aks-cluster && \
-    kubectl --kubeconfig=gateway-aks-delete-kubeconfig delete -k k8s/overlays/production
-  # [END cloudbuild]
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   entrypoint: /bin/sh
+#   id: "Delete from AKS cluster"
+#   args:
+#   - '-c'
+#   - |
+#     set -x && \
+#     export KUBECONFIG="$(pwd)/gateway-aks-delete-kubeconfig" && \
+#     gcloud beta container hub memberships get-credentials aks-cluster && \
+#     kubectl --kubeconfig=gateway-aks-delete-kubeconfig delete -k k8s/overlays/production
+#   # [END cloudbuild]
 
 # This step deletes the existing deployment of Anthos GKE cluster
 - name: 'gcr.io/cloud-builders/gcloud'
