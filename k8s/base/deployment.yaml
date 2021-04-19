@@ -37,7 +37,7 @@ spec:
             - /code/ready.sh
         resources: {}
         securityContext:
-          privileged: false
+          privileged: true
         volumeMounts:
         - mountPath: /sys/fs/cgroup
           name: cgroups
