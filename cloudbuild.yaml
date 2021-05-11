@@ -92,7 +92,7 @@ steps:
 #   - |
 #     set -x && \
 #     export KUBECONFIG="$(pwd)/gateway-gke-delete-kubeconfig" && \
-#     gcloud beta container hub memberships get-credentials gke-cluster && \
+#     gcloud beta container hub memberships get-credentials gke-cluster-1 && \
 #     kubectl --kubeconfig=gateway-gke-delete-kubeconfig delete -k k8s/overlays/production
 
 
@@ -120,6 +120,6 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gateway-gke-kubeconfig" && \
-    gcloud beta container hub memberships get-credentials gke-cluster && \
+    gcloud beta container hub memberships get-credentials gke-cluster-1 && \
     kubectl --kubeconfig=gateway-gke-kubeconfig apply -k k8s/overlays/production
   # [END cloudbuild]
