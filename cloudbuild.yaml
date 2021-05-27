@@ -120,6 +120,6 @@ steps:
   - |
     set -x && \
     export KUBECONFIG="$(pwd)/gateway-gke-kubeconfig" && \
-    gcloud beta container hub memberships get-credentials gke-cluster-1 && \
+    gcloud beta container hub memberships get-credentials gke-cluster && \
     kubectl --kubeconfig=gateway-gke-kubeconfig apply -k k8s/overlays/production
   # [END cloudbuild]

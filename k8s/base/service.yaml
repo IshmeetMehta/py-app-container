@@ -1,6 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
+  creationTimestamp: null
+  labels:
+    migrate-for-anthos-optimization: "true"
+    migrate-for-anthos-version: v1.7.5
   name: py-app-instance
 spec:
   selector:
